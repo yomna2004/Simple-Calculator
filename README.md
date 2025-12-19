@@ -63,7 +63,7 @@ This project was built to practice:
 ---
 ## 📸 Screenshot
 
-![Calculator UI](screenshots/calculator.png)
+![Calculator UI](C:\Users\New\OneDrive\Pictures\Screenshots\calculator.png)
 
 
 
