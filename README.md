@@ -30,13 +30,13 @@ The project focuses on understanding **events, user input handling, and basic pr
 
 ## 🧠 How It Works
 
-1. Numbers are entered using buttons and displayed in a `TextBox`.
-2. The first number is stored once an operation is selected.
-3. The calculator waits for the second number input.
-4. When the **Equals (=)** button is clicked:
-   - The selected operation is applied.
-   - The result is displayed.
-5. The result can be reused in the next calculation.
+1. Enter the first number using the numeric buttons.
+2. Press **Enter** to confirm the first number.
+3. Select the desired operation (+, −, ×, ÷).
+4. Enter the second number using the numeric buttons.
+5. Press **Equals (=)** to display the result.
+6. Use the **Clear** button to reset the calculator.
+
 
 ---
 
