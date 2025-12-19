@@ -63,7 +63,8 @@ This project was built to practice:
 ---
 ## 📸 Screenshot
 
-![Calculator UI](C:\Users\New\OneDrive\Pictures\Screenshots\calculator.png)
+<img width="388" height="468" alt="calculator png" src="https://github.com/user-attachments/assets/8267b200-9782-40f7-9f68-4740e1721842" />
+
 
 
 
