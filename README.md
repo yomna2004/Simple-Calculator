@@ -63,6 +63,7 @@ This project was built to practice:
 ---
 ## 📸 Screenshot
 
-![Simple Calculator Screenshot](calculator.png)
+![Calculator UI](screenshots/calculator.png)
+
 
 
