@@ -27,37 +27,53 @@ namespace SimpleCalc
             textdisplay += btn.Text;
             textBox1.Text = textdisplay;
         }
+
+         private void  EnterNumber()
+        {
+            if (int.TryParse(textBox1.Text, out int value) && IsSecondNum == false)
+            {
+                num1 = value;
+                IsSecondNum = true;
+            }
+            else if(int.TryParse(textBox1.Text, out int value1) && IsSecondNum == true)
+            {
+                num2 = value1;
+            }
+        }
+
         void SetOp(Button btn)
         {
+            EnterNumber();
+
             if (btn == AddOP)
             {
                 Operation = op.Add;
-               textBox1.Text = textdisplay = "";
-
+                textdisplay = num1 + " + ";
             }
-            if (btn == SubstructOP)
+            else if (btn == SubstructOP)
             {
                 Operation = op.Sub;
-               textBox1.Text = textdisplay = "";
-
+                textdisplay = num1 + " - ";
             }
-            if (btn == MultiOP)
+            else if (btn == MultiOP)
             {
                 Operation = op.Mul;
-                textBox1.Text = textdisplay = "";
-
+                textdisplay = num1 + " * ";
             }
-            if (btn == divOP)
+            else if (btn == divOP)
             {
                 Operation = op.Div;
-                textBox1.Text = textdisplay = "";
+                textdisplay = num1 + " / ";
             }
 
+            textBox1.Text = textdisplay;
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(30, 30, 30);
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.Text = string.Empty;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -138,19 +154,7 @@ namespace SimpleCalc
             SetOp(SubstructOP);
         }
 
-        private void button11_Click_1(object sender, EventArgs e)
-        {
-            if (int.TryParse(textBox1.Text, out int value) && IsSecondNum == false)
-            {
-                num1 = value;
-                IsSecondNum = true;
-            }
-            else if (int.TryParse(textBox1.Text, out int value2) && IsSecondNum == true)
-            {
-                num2 = value2;
-            }
-
-        }
+        
 
         private void button6_Click(object sender, EventArgs e)
         {
@@ -164,45 +168,62 @@ namespace SimpleCalc
             num2 = 0;
             Operation = op.NotSelectedYet;
         }
+        string GetOpSymbol()
+        {
+            switch (Operation)
+            {
+                case op.Add:
+                    return "+";
+                case op.Sub:
+                    return "-";
+                case op.Mul:
+                    return "*";
+                case op.Div:
+                    return "/";
+                default:
+                    return "";
+            }
+        }
 
         private void Equalbtn_Click(object sender, EventArgs e)
         {
+            string[] parts = textdisplay.Split(' ');
+
+            if (parts.Length < 3) return;
+
+            num2 = int.Parse(parts[2]);
+
             int result = 0;
-            if (int.TryParse(textBox1.Text, out int value))
+
+            switch (Operation)
             {
-                num2 = value;
-
-                switch (Operation)
-                {
-                    case op.Add:
-                        result = num1 + num2;
-                        break;
-                    case op.Sub:
-                        result = num1 - num2;
-                        break;
-                    case op.Mul:
-                        result = num1 * num2;
-                        break;
-                    case op.Div:
-                        if (num2 != 0)
-                        {
-                            result = num1 / num2;
-                        }
-                        else
-                        {
-                            textBox1.Text = "Error";
-                            return;
-                        }
-                        break;
-                }
-
-                textBox1.Text = result.ToString();
-                num1 = result;
-                num2 = 0;
-                IsSecondNum = false;
-                Operation = op.NotSelectedYet;
-                textdisplay = result.ToString();
+                case op.Add:
+                    result = num1 + num2;
+                    break;
+                case op.Sub:
+                    result = num1 - num2;
+                    break;
+                case op.Mul:
+                    result = num1 * num2;
+                    break;
+                case op.Div:
+                    if (num2 == 0)
+                    {
+                        textBox1.Text = "Error";
+                        return;
+                    }
+                    result = num1 / num2;
+                    break;
             }
+
+            textBox1.Text = $"{num1} {GetOpSymbol()} {num2} = {result}";
+
+            num1 = result;
+            num2 = 0;
+            IsSecondNum = false;
+            Operation = op.NotSelectedYet;
+            textdisplay = result.ToString();
         }
+
     }
 }
